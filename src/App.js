@@ -17,12 +17,13 @@ class App extends React.Component{
 
   componentDidMount(){
     this.callBackendAPI()
-      .then(res => this.setState(()=>{
+      .then(res => 
+        this.setState(() => {
         return{
           getTweets: [...res],
           searchTweets: [...res]
-        }
-      }))
+        }}
+      ))
       .catch(err => console.log(err));
   }
 
@@ -37,7 +38,8 @@ class App extends React.Component{
 
   // setState's second param takes callback, this method allow setState to happen before calling findUsertweets function which require the tweethandle string
   getUserHandle = (e) => {
-    const HandleId = e.target.innerHTML
+    const HandleId = e.target.textContent
+    //const HandleId = e.currentTarget.getAttribute('value')
     this.setState({
       tweetHandle: HandleId
     }, () => {
